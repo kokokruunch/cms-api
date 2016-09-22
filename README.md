@@ -23,14 +23,18 @@ The API has been designed to support the following consumer use cases:
 3. The message format chosen is JSON. This provides the benefits of being easier to work with for a mobile application due to it being lightweight and portable. The need to optimise bandwidth usage is important to ensure that API calls from mobile applications over the network are efficient (Use Case 2). The methods defined at the customerId resource (PUT, GET, DELETE), have been made at that level to reduce the bandwidth usage . Compression have been considered, but not implemented due to the current nature of the customer data.
 4. The RAML has been factorised to allow for future resources such as orders and products (Use Case 3) to be added. This has been done by defining *resourceTypes* to handle the retrieval, creation, updates and deletion of the customer, which will most likely be the same use case for orders and products.
 5. The Java implementation was also modularised by having a separate Customer class to handle Customer information. Following this pattern, future resources will be handled in their own respective classes (Use Case 3). CustomerMgmtSystem will be the main gateway to these objects. Subsequently, the Customer flow implementation was separated from the Main flow.
+6. Exception strategy utilises the APIKit's generated exception handlers. Additional exception messages have been added and can be seen on the stack trace, some examples can be seen below. The stack trace was not added on the error response due to its verbosity.
 
 ### Exceptional Scenarios ###
 
 1. Customer ID does not exist in the system:
 		An error is thrown to indicate that the customer ID does not exist. This is applicable to the update, deletion and retrieval of a customer.
 
-		Root Exception stack trace:
-			org.mule.module.apikit.exception.NotFoundException: Customer 10 does not exist.
+		>Response:
+		>"message": "Resource not found"
+
+		> Root Exception stack trace:
+		>	org.mule.module.apikit.exception.NotFoundException: Customer 10 does not exist.
 
 2. Incomplete customer data:
 		In the event that the customer does not have a particular data eg. last name, an empty string will be added instead of marking it as 'null'.
@@ -38,8 +42,11 @@ The API has been designed to support the following consumer use cases:
 3. No customer data:
 		An error is thrown to indicate that there are no customers
 
-		Root Exception stack trace:
-			org.mule.module.apikit.exception.NotFoundException: No customers are found.
+		>Response:
+		>"message": "Resource not found"
+
+		>Root Exception stack trace:
+		>	org.mule.module.apikit.exception.NotFoundException: No customers are found.
 
 Studio automatically generates several global exception strategy mappings that the Main flow references to send error responses in HTTP-status-code-friendly format. Defined at a global level within the project's XML config, this standard set of exception strategy mappings ensure that anytime a backend flow throws an exception, the API responds to the caller with an HTTP-status code and corresponding plain-language message.
 
