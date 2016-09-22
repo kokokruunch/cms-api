@@ -30,11 +30,11 @@ The API has been designed to support the following consumer use cases:
 1. Customer ID does not exist in the system:
 		An error is thrown to indicate that the customer ID does not exist. This is applicable to the update, deletion and retrieval of a customer.
 
-		>Response:
-		>"message": "Resource not found"
+		Response:
+		"message": "Resource not found"
 
-		> Root Exception stack trace:
-		>	org.mule.module.apikit.exception.NotFoundException: Customer 10 does not exist.
+		 Root Exception stack trace:
+			org.mule.module.apikit.exception.NotFoundException: Customer 10 does not exist.
 
 2. Incomplete customer data:
 		In the event that the customer does not have a particular data eg. last name, an empty string will be added instead of marking it as 'null'.
@@ -42,11 +42,11 @@ The API has been designed to support the following consumer use cases:
 3. No customer data:
 		An error is thrown to indicate that there are no customers
 
-		>Response:
-		>"message": "Resource not found"
+		Response:
+		"message": "Resource not found"
 
-		>Root Exception stack trace:
-		>	org.mule.module.apikit.exception.NotFoundException: No customers are found.
+		Root Exception stack trace:
+			org.mule.module.apikit.exception.NotFoundException: No customers are found.
 
 Studio automatically generates several global exception strategy mappings that the Main flow references to send error responses in HTTP-status-code-friendly format. Defined at a global level within the project's XML config, this standard set of exception strategy mappings ensure that anytime a backend flow throws an exception, the API responds to the caller with an HTTP-status code and corresponding plain-language message.
 
