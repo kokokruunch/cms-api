@@ -1,6 +1,6 @@
 # Customer Management System API #
 
-This application implements an API that allows the client to manage customer information for a Customer Management System. [RAML](http://raml.org/) was used to design the API and was then subsequently mapped to an implementation of an API in Mule. The backend implementation has been done using Java.
+This application implements an API that allows the client to manage customer information for a Customer Management System. [RAML](http://raml.org/) was used to design the API and was then subsequently mapped to an implementation of an API in Mule. The RAML can be found on (src/main/api/). The backend implementation has been done using Java.
 
 ### Use Cases ###
 
