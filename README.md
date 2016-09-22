@@ -67,8 +67,8 @@ When using the **POST**, **DELETE** and **PUT** methods, an *accessToken* needs 
 
 #### Main Flow
 
-The main flow is standard for an APIkit project. It contains an inbound endpoint and an APIkit Router. The exception strategies are explained separately, below.
+The main flow is standard for an APIkit project. It contains an inbound endpoint and an APIkit Router.
 
 #### Backend Flows ####
 
-The backend flows in this application are stubs, with placeholder backend implementation defined with Spring beans.
+The backend flows in this application are stubs, with placeholder backend implementation defined with Java.
