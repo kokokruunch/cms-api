@@ -53,6 +53,7 @@ Follow the procedure below to run and test the functionality of this example app
 4. Anypoint Studio starts the application and automatically opens an API console below the canvas.
 5. Click **GET** for the **/customers** resource.
 The console opens a details panel for the GET method for this resource that allows you to view details about the request format and expected responses, as well as a **Try It** section in the right.
+When using the **POST**, **DELETE** and **PUT** methods, an *accessToken* needs to be added as a query parameter. eg. http://localhost:8081/api/customers?accessToken=AABBCCDD
 6. In the **Try It** section, then click **GET**. *Note: due to the caching strategy applied, an updated customer list will appear after 10 seconds.*
 7. Scroll down to view the response. The API should return a list of customers.
 8. Click through the other resources and methods to test out other API calls.
