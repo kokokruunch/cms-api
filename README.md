@@ -54,7 +54,7 @@ Studio automatically generates several global exception strategy mappings that t
 
 Follow the procedure below to run and test the functionality of this example application in Anypoint Studio.
 
-1. Open the **cms-api** project in Anypoint Studio.
+1. Open the **cms-api** project in Anypoint Studio by Importing it as an *Anypoint Studio Project*.
 2. In your application in Studio, click the **Global Elements** tab. Double-click the HTTP Listener global element to open its **Global Element Properties** panel. Change the contents of the **port** field to the required HTTP port e.g. 8081
 3. In the Package Explorer pane in Studio, right-click the project name, then select Run As > Mule Application.
 4. Anypoint Studio starts the application and automatically opens an API console below the canvas.
