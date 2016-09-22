@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+    <flow name="updateCustomerFlow">
+        <logger message="START: updateCustomerFlow" level="INFO" doc:name="Start Log"/>
+        <custom-transformer class="org.mule.module.apikit.transform.PayloadNormalizerTransformer" doc:name="Parse Object to Java"/>
+        <expression-component doc:name="Call Java Method"><![CDATA[app.registry['cms-api'].updateCustomer(customerId, payload);]]></expression-component>
+        <set-payload value="{ &quot;message&quot;: &quot;The customer has been succesfully updated.&quot; }" doc:name="Set Payload"/>
+        <logger message="#['END: updateCustomerFlow\n' + payload]" level="INFO" doc:name="End Log"/>
+    </flow>
+    <flow name="deleteCustomerFlow">
+        <logger message="START: deleteCustomerFlow" level="INFO" doc:name="Start Log"/>
+        <expression-component doc:name="Call Java Method"><![CDATA[payload = app.registry['cms-api'].deleteCustomer(customerId);]]></expression-component>
+        <set-payload value="{ &quot;message&quot;: &quot;The customer has been succesfully deleted.&quot; }" doc:name="Set Payload"/>
+        <logger message="#['END: deleteCustomerFlow\n' + payload]" level="INFO" doc:name="End Log"/>
+    </flow>
+    <flow name="createCustomerFlow">
+        <logger message="START: createCustomerFlow" level="INFO" doc:name="Start Log"/>
+        <custom-transformer class="org.mule.module.apikit.transform.PayloadNormalizerTransformer" doc:name="Parse Object to Java"/>
+        <expression-component doc:name="Call Java Method"><![CDATA[app.registry['cms-api'].createCustomer(payload);]]></expression-component>
+        <set-payload value="{ &quot;message&quot;: &quot;The customer has been succesfully created.&quot; }" doc:name="Set Payload"/>
+        <logger message="#['END: createCustomerFlow\n' + payload]" level="INFO" doc:name="End Log"/>
+    </flow>
+    <flow name="getCustomerFlow">
+        <logger message="START: getCustomerFlow" level="INFO" doc:name="Start Log"/>
+        <expression-component doc:name="Call Java Method"><![CDATA[payload = app.registry['cms-api'].getCustomer(customerId);]]></expression-component>
+        <logger message="#['END: getCustomerFlow']" level="INFO" doc:name="End Log"/>
+    </flow>
+    <flow name="getCustomersFlow">
+        <logger message="START: getCustomersFlow" level="INFO" doc:name="Start Log"/>
+        <ee:cache cachingStrategy-ref="Caching_Strategy" doc:name="Cache">
+            <expression-component doc:name="Call Java Method"><![CDATA[payload = app.registry['cms-api'].getCustomers();]]></expression-component>
+        </ee:cache>
+        <logger message="#['END: getCustomersFlow']" level="INFO" doc:name="End Log"/>
+    </flow>
+</mule>

@@ -1,0 +1,22 @@
+{
+  "customers": [
+    {
+      "customerId": 1,
+      "firstName": "Justin",
+      "lastName": "Time",
+      "address": "4 Wallaby Way, Sydney, NSW 2000, Australia"
+    },
+    {
+      "customerId": 2,
+      "firstName": "Rose",
+      "lastName": "Gardner",
+      "address": "19 Flower Avenue, Parramatta, NSW 2150, Australia"
+    },
+    {
+      "customerId": 3,
+      "firstName": "Turk",
+      "lastName": "Ki",
+      "address": "1 Two Street, Canberra, ACT 2600, Australia"
+    }
+  ]
+}
